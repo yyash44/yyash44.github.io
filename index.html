@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yash Dave | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+
+  <!-- Minimal, clean styling (you can replace with your own CSS or a framework) -->
+  <style>
+    :root {
+      --bg: #0f172a;         /* deep slate */
+      --panel: #1756de;      /* dark panel */
+      --text: #e5e7eb;       /* light text */
+      --muted: #94a3b8;      /* muted text */
+      --accent: #22d3ee;     /* cyan accent */
+      --accent-2: #a78bfa;   /* soft purple */
+      --card: #1f2937;       /* card background */
+      --chip: #111827;       /* chip bg */
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    header { background: linear-gradient(135deg, rgba(34,211,238,0.08), rgba(167,139,250,0.08)); border-bottom: 1px solid #1f2937; }
+    header .container { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 16px; }
+    .avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 3px rgba(34,211,238,0.25), 0 6px 18px rgba(0,0,0,0.35);
+    }
+    .title h1 { margin: 0; font-size: 1.8rem; letter-spacing: 0.5px; }
+    .title p { margin: 4px 0 0; color: var(--muted); }
+
+    nav { display: flex; gap: 16px; flex-wrap: wrap; }
+    nav a { padding: 10px 14px; border: 1px solid #1f2937; border-radius: 10px; background: var(--chip); font-weight: 600; color: var(--text); }
+    nav a:hover { border-color: var(--accent); color: var(--accent); }
+
+    section { padding: 40px 0; border-bottom: 1px solid #1f2937; }
+    section:last-of-type { border-bottom: none; }
+
+    .section-header { margin-bottom: 20px; }
+    .section-header h2 { margin: 0; font-size: 1.6rem; }
+    .section-header p { margin: 8px 0 0; color: var(--muted); }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    @media (max-width: 600px) {
+      header .container { grid-template-columns: 1fr; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .card { background: var(--card); border: 1px solid #1f2937; border-radius: 14px; padding: 16px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip { background: var(--chip); border: 1px solid #1f2937; padding: 8px 10px; border-radius: 999px; font-size: 0.95rem; }
+
+    .list { display: grid; gap: 10px; }
+    .list-item { display: flex; align-items: center; gap: 10px; }
+    .bullet { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(34,211,238,0.55); }
+
+    .edu { display: grid; gap: 8px; }
+    .edu h3 { margin: 0; font-size: 1.2rem; }
+    .edu p { margin: 4px 0; color: var(--muted); }
+
+    .lang { display: grid; gap: 12px; }
+    .lang-item { display: grid; grid-template-columns: 140px 1fr 60px; align-items: center; gap: 12px; }
+    .progress { height: 10px; border-radius: 999px; background: #0c172c; border: 1px solid #1167df; overflow: hidden; }
+    .bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+
+    .contact { display: grid; gap: 10px; }
+    .contact a { display: inline-flex; gap: 8px; align-items: center; }
+
+    footer { padding: 24px 0 40px; color: var(--muted); text-align: center; }
+  </style>
+</head>
+<!-- Image Popup Modal -->
+<div id="imgModal" class="img-modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
+<body>
+
+  <!-- Video Background -->
+  <video id="bg-video" autoplay loop muted playsinline>
+      <source src="/assets/neon.mp4" type="video/mp4">
+  </video>
+
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="brand">
+        <div class="avatar">
+         <div class="avatar-inner">
+            <img src="assets/me.jpg" alt="Yash Dave" style="width: 64px; height: 64px; border-radius: 50%; padding: 4px;">
+         </div>
+        </div>
+        <div class="title">
+          <h1>Yash Dave</h1>
+          <p>Bachelor in Computer Science & Engineering</p>
+        </div>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#activities">Activities</a>
+        <a href="#education">Education</a>
+        <a href="#languages">Languages</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- About Me -->
+    <section id="about">
+      <div class="section-header">
+        <h2>About me</h2>
+        <p>Passionate CSE student eager to apply skills to real-world challenges.</p>
+      </div>
+      <div class="card">
+        <p>
+          I am Yash Dave, a passionate and driven Computer Science and Engineering (CSE) student pursuing a B.Tech degree at
+          Parul Institute of Engineering and Technology. With a strong foundation in computer science principles programming
+          languages (C, Java, Python), and experience in database management (MySQL), Django, and pandas, I am eager to
+          apply my technical skills and knowledge to real-world challenges.
+        </p>
+        <p>
+          My academic journey has equipped me to work both independently and in teams. fostering a collaborative approach to
+          achieving goals. I’m motivated to contribute to the tech industry and continuously expand my expertise in software
+          development, data structures, algorithms, and emerging technologies.
+        </p>
+      </div>
+    </section>
+
+    <!-- Activities -->
+    <section id="activities">
+      <div class="section-header">
+        <h2>Activities</h2>
+        <p>What keeps me curious and creative.</p>
+      </div>
+      <div class="grid-2">
+        <div class="card list">
+          <div class="list-item"><span class="bullet"></span><span>Photography</span></div>
+          <div class="list-item"><span class="bullet"></span><span>Sketching</span></div>
+          <div class="list-item"><span class="bullet"></span><span>Learning</span></div>
+          <div class="list-item"><span class="bullet"></span><span>Console gaming</span></div>
+        </div>
+        <div class="card">
+          <p style="color: var(--muted);">I enjoy photography, sketching, and console gaming, which nurture my creativity and focus. Alongside these, I am passionate about coding in Python, with hands-on experience in MySQL. These pursuits reflect both my artistic side and my strong technical problem-solving abilities.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="section-header">
+        <h2>Education</h2>
+        <p>Academic background and timeline.</p>
+      </div>
+      <div class="card edu">
+        <h3>Bachelor of Computer Science & Engineering</h3>
+        <p>Parul University, Vadodara</p>
+        <p>2023 — 2027</p>
+      </div>
+    </section>
+
+    <!-- Languages -->
+    <section id="languages">
+      <div class="section-header">
+        <h2>Languages</h2>
+        <p>Proficiency levels.</p>
+      </div>
+      <div class="card lang">
+        <div class="lang-item">
+          <strong>Hindi</strong>
+          <div class="progress" aria-label="Hindi proficiency">
+            <div class="bar" style="width: 94%;"></div>
+          </div>
+          <span>94%</span>
+        </div>
+        <div class="lang-item">
+          <strong>English</strong>
+          <div class="progress" aria-label="English proficiency">
+            <div class="bar" style="width: 86%;"></div>
+          </div>
+          <span>86%</span>
+        </div>
+        <div class="lang-item">
+          <strong>Marwadi</strong>
+          <div class="progress" aria-label="Marwadi proficiency">
+            <div class="bar" style="width: 84%;"></div>
+          </div>
+          <span>84%</span>
+        </div>
+      </div>
+    </section>
+  <br>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-header">
+        <h2>Skills</h2>
+        <p>Technical areas and tools I work with.</p>
+      </div>
+
+      <div class="grid-2">
+        
+        <!-- Technical Skills -->
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Technical skills</h3>
+          <div class="chips" style="margin-top:10px;">
+            <span class="chip">C</span>
+            <span class="chip">C++</span>
+            <span class="chip">Java</span>
+            <span class="chip">Python</span>
+            <span class="chip">JavaScript</span>
+
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">React</span>
+            <span class="chip">Node.js</span>
+            <span class="chip">Express</span>
+
+            <span class="chip">SQL</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">MongoDB</span>
+
+            <span class="chip">Sorting</span>
+            <span class="chip">Searching</span>
+            <span class="chip">Dynamic Programming</span>
+            <span class="chip">Trees</span>
+            <span class="chip">Graphs</span>
+            <span class="chip">Hashing</span>
+
+            <span class="chip">OOP</span>
+            <span class="chip">Git</span>
+            <span class="chip">GitHub</span>
+
+            <span class="chip">Linux</span>
+            <span class="chip">Windows</span>
+
+            <span class="chip">Android Studio</span>
+            <span class="chip">React Native</span>
+
+            <span class="chip">AWS</span>
+            <span class="chip">Azure</span>
+            <span class="chip">Google Cloud</span>
+
+            <span class="chip">Django</span>
+            <span class="chip">pandas</span>
+          </div>
+        </div>
+      <br>
+        <!-- Soft Skills -->
+        <div class="card reveal">
+          <h3 style="margin-top:0;">Soft skills</h3>
+          <ul class="list" style="margin-top:10px; list-style:none; padding:0;">
+            <li class="list-item"><span class="bullet"></span><span>Proactive problem-solving</span></li>
+            <li class="list-item"><span class="bullet"></span><span>Teamwork & communication</span></li>
+            <li class="list-item"><span class="bullet"></span><span>Clear technical storytelling</span></li>
+            <li class="list-item"><span class="bullet"></span><span>Time management & multitasking</span></li>
+            <li class="list-item"><span class="bullet"></span><span>Adaptability & fast learning</span></li>
+            <li class="list-item"><span class="bullet"></span><span>Leadership & guiding teams</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Contact -->
+    <section id="contact" class="reveal">
+      <div class="section-header">
+        <h2>Contact</h2>
+        <p>Say hello.</p>
+      </div>
+      <div class="card contact">
+        <div>
+          <strong>Email:</strong>
+          <a href="mailto:yashdave7000@gmail.com">yashdave7000@gmail.com</a>
+        </div>
+        <div>
+          <strong>Phone:</strong>
+          <a href="tel:+6232386670">+91 6232386670</a>
+        </div>
+        <div>
+          <strong>Website:</strong>
+          <a href="https://github.com/yyash44" target="_blank" rel="noopener">www.github.com</a>
+        </div>
+        <div>
+          <strong>LinkedIn:</strong>
+          <a href="https://www.linkedin.com/in/yash-dave-aa652738b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"target="_blank" rel="noopener">www.linkedin.com</a>
+        </div>
+        <p style="color: var(--muted); margin-top: 8px;">
+          Based in Vadodara, India.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Yash Dave. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
